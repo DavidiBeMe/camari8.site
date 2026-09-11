@@ -43,15 +43,25 @@
 </head>
 <body>
     <div class="card">
-        <h1>Camari Puzzle</h1>
+        <h1>CAMARI8 3x3 Cube Trainer, Solver, Painter, and so much more</h1>
         <p>Coming soon to a playstore near you</p>
         <!-- TODO: Uncomment once published on Google Play
         <a href="https://play.google.com/store/apps/details?id=com.yourname.camari" class="btn" id="dl-btn">Get it on Google Play</a>-->
     </div>
 
-    <script>
-        // Optional: If you use a custom URL scheme for deep linking later, 
-        // you can trigger it here to attempt opening the app automatically.
-    </script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const puzzleData = urlParams.get('puzzle');
+
+    if (puzzleData) {
+        // Option A: Custom Scheme (e.g., camari://puzzle?data=...)
+        window.location.href = `camari://puzzle?data=${puzzleData}`;
+
+        // Optional fallback timeout if the app isn't installed
+        setTimeout(() => {
+            // Stay on landing page or show download button
+        }, 2000);
+    }
+</script>>
 </body>
 </html>
