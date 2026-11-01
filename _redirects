@@ -1,0 +1,10 @@
+# Cloudflare Pages redirect rules for camari8.com
+#
+# The guide is a single page at /guide/. Alternate spellings people may have
+# typed or shared redirect there instead of 404ing.
+
+/guide              /guide/   301
+/user-guide         /guide/   301
+/userguide          /guide/   301
+/manual             /guide/   301
+/help               /guide/   301

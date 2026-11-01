@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAMARI8 Cube App — User Guide</title>
+<meta name="description" content="Welcome to CAMARI8 Cube, a 3D Rubik's Cube you can turn, scramble, solve, animate, design and save. This guide covers every feature in the app. Everything it describes works…">
+<meta name="theme-color" content="#121214">
+<link rel="canonical" href="https://camari8.com/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAMARI8 Cube App — User Guide">
+<meta property="og:description" content="Welcome to CAMARI8 Cube, a 3D Rubik's Cube you can turn, scramble, solve, animate, design and save. This guide covers every feature in the app. Everything it describes works…">
+<meta property="og:url" content="https://camari8.com/guide/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f1013'/%3E%3Crect x='7' y='7' width='8' height='8' fill='%23e8452c'/%3E%3Crect x='17' y='7' width='8' height='8' fill='%23f2c230'/%3E%3Crect x='7' y='17' width='8' height='8' fill='%232fa84f'/%3E%3Crect x='17' y='17' width='8' height='8' fill='%23256bd8'/%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #121214;
+  --bar: rgba(18, 18, 20, 0.88);
+  --panel: #1a1a1e;
+  --panel-2: #232329;
+  --line: #33333c;
+  --text: #ececf1;
+  --muted: #a3a3b2;
+  --accent: #6cb0ff;
+  --code: #26262d;
+  --shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f6f7f9;
+    --bar: rgba(246, 247, 249, 0.92);
+    --panel: #ffffff;
+    --panel-2: #eff1f5;
+    --line: #d9dce3;
+    --text: #191b1f;
+    --muted: #5b6270;
+    --accent: #0b5fc0;
+    --code: #eceef2;
+    --shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.66 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-wrap: break-word;
+}
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 18px;
+  background: var(--bar);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .bar { background: var(--bg); }
+}
+
+.brand { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.06em; }
+.brand .dim { font-weight: 400; color: var(--muted); }
+.chip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.wrap { max-width: 52rem; margin: 0 auto; padding: 26px 18px 72px; }
+
+h1 {
+  margin: 0 0 0.6em;
+  font-size: clamp(1.55rem, 6vw, 2.1rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin: 2.3em 0 0.6em;
+  padding-top: 0.85em;
+  border-top: 1px solid var(--line);
+  font-size: clamp(1.26rem, 4.6vw, 1.55rem);
+  line-height: 1.3;
+  scroll-margin-top: 62px;
+}
+
+h3 {
+  margin: 1.7em 0 0.45em;
+  font-size: clamp(1.04rem, 3.9vw, 1.18rem);
+  line-height: 1.35;
+  scroll-margin-top: 62px;
+}
+
+p { margin: 0 0 0.9em; }
+
+a { color: var(--accent); text-decoration: none; text-underline-offset: 2px; }
+a:hover, a:focus-visible { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+strong { font-weight: 650; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+  padding: 0.08em 0.34em;
+  background: var(--code);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  margin: 0 0 1.1em;
+  padding: 12px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: var(--shadow);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 0.86rem;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
+li { margin: 0.32em 0; }
+
+.tw {
+  margin: 0 0 1.15em;
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { padding: 0.55em 0.75em; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+th { background: var(--panel-2); font-weight: 650; }
+tbody tr:last-child td { border-bottom: 0; }
+
+hr { margin: 1.9em 0; border: 0; border-top: 1px solid var(--line); }
+
+.totop { margin: 1.5em 0 0; text-align: right; font-size: 0.82rem; }
+.totop a { color: var(--muted); }
+
+.toc {
+  margin: 0 0 1.6em;
+  padding: 6px 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.toc ol { margin: 0.7em 0; padding-left: 1.6em; columns: 2; column-gap: 30px; }
+.toc li { margin: 0.3em 0; break-inside: avoid; }
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-top: 3em;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+footer a { color: var(--muted); }
+
+@media (max-width: 34rem) {
+  .wrap { padding-top: 18px; }
+  .toc ol { columns: 1; }
+}
+
+@media print {
+  :root {
+    --bg: #fff;
+    --bar: #fff;
+    --panel: #fff;
+    --panel-2: #fff;
+    --line: #bbb;
+    --text: #000;
+    --muted: #444;
+    --accent: #000;
+    --code: #f2f2f2;
+    --shadow: none;
+  }
+  .bar, .totop { display: none; }
+  .wrap { max-width: none; padding: 0; }
+  a { color: #000; text-decoration: underline; }
+  .tw { overflow: visible; }
+  h2, h3 { page-break-after: avoid; }
+  table, pre { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="bar" id="top">
+  <span class="brand">CAMARI8 <span class="dim">Cube</span></span>
+  <span class="chip">User&rsquo;s Guide &middot; v2.4.0</span>
+</header>
+<main class="wrap">
+<h1 id="camari8-cube-app-user-guide">CAMARI8 Cube App — User Guide</h1>
+<p>Welcome to <strong>CAMARI8 Cube</strong>, a 3D Rubik's Cube you can turn, scramble, solve, animate, design and save. This guide covers every feature in the app. Everything it describes works offline — the cube engine, both solvers and the built-in algorithm library are all part of the app itself, so no internet connection is required.</p>
+<p>The version this guide was written for is the one shown on the app's <strong>About</strong> screen (menu → About): <strong>CAMARI8 Cube, Version 2.4.0</strong>.</p>
+<p>A condensed copy of this guide is built into the app itself — menu → 📖 <strong>User's Guide</strong> — so the everyday steps are available without a connection. This document is the full reference and goes further: worked examples, every preference, the complete FAQ and a glossary.</p>
+<p>The same text is published as a web page at <strong><a href="https://camari8.com/guide/" rel="noopener noreferrer">camari8.com/guide</a></strong>, for reading on a phone or sending to someone who does not have the app. That page is generated from this file, so the two cannot drift apart.</p>
+<h2 id="contents">Contents</h2>
+<nav class="toc" aria-label="Contents">
+<ol>
+<li><a href="#1-what-the-app-can-do">What the app can do</a></li>
+<li><a href="#2-the-screen-at-a-glance">The screen at a glance</a></li>
+<li><a href="#3-moving-the-view-of-the-cube">Moving the view of the cube</a></li>
+<li><a href="#4-the-automated-and-solver-tab">The Automated and Solver tab</a></li>
+<li><a href="#5-the-manual-controls-tab">The Manual Controls tab</a></li>
+<li><a href="#6-recording-your-own-moves">Recording your own moves</a></li>
+<li><a href="#7-cube-painter-and-custom-patterns">Cube Painter and custom patterns</a></li>
+<li><a href="#8-algorithm-manager">Algorithm Manager</a></li>
+<li><a href="#9-the-built-in-algorithm-library">The built-in algorithm library</a></li>
+<li><a href="#10-backup-export-and-import">Backup, export and import</a></li>
+<li><a href="#11-sharing-patterns-and-algorithms">Sharing patterns and algorithms</a></li>
+<li><a href="#12-preferences">Preferences</a></li>
+<li><a href="#13-notation-reference">Notation reference</a></li>
+<li><a href="#14-where-your-data-lives">Where your data lives</a></li>
+<li><a href="#15-troubleshooting-and-faq">Troubleshooting and FAQ</a></li>
+<li><a href="#16-glossary">Glossary</a></li>
+</ol>
+</nav>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="1-what-the-app-can-do">1. What the app can do</h2>
+<ul>
+<li><strong>Turn a real 3D cube</strong> — one face, one slice or the whole cube at a time, with smooth animation.</li>
+<li><strong>Type or pick algorithms</strong> in classic cube notation or in CAMARI notation, then play, pause, step or reverse them.</li>
+<li><strong>Scramble</strong> the cube with one tap.</li>
+<li><strong>Check</strong> that the cube is in a legal state, and <strong>solve</strong> it with one of two built-in solvers.</li>
+<li><strong>Record</strong> your own turning into a reusable algorithm without writing anything down.</li>
+<li><strong>Paint</strong> your own sticker designs on the cube and save them as custom patterns.</li>
+<li><strong>Keep a library</strong> of saved algorithms and saved patterns, and share individual items.</li>
+<li><strong>Back up</strong> the whole library to a single JSON file and restore it later.</li>
+</ul>
+<p>The app never needs an account and never sends your cube designs anywhere unless you choose to share them.</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="2-the-screen-at-a-glance">2. The screen at a glance</h2>
+<p>The screen has three areas, top to bottom.</p>
+<h3 id="21-design-bar-very-top">2.1 Design bar (very top)</h3>
+<p>A slim strip for designing patterns:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Control</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>🖌️ <strong>Painter toggle</strong></td><td>Turns painter mode on and off.</td></tr>
+<tr><td><strong>Reverse algorithm ↔️</strong></td><td>Reverses the algorithm currently in the algorithm field. Hidden while painter mode is on.</td></tr>
+<tr><td>🟥 🟧 🟨 ⬜ 🟩 🟦 ⬛ <strong>Swatches</strong></td><td>The paint colours. Only visible while painter mode is on.</td></tr>
+<tr><td>💾 <strong>Save</strong></td><td>Opens the Cube Design Manager so you can save the cube exactly as it is on screen. Always visible.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-cube-view-upper-half-of-the-screen">2.2 Cube view (upper half of the screen)</h3>
+<p>The 3D cube, plus six overlay arrows for rotating the whole cube and a small slider that sets the default viewing angle (see <a href="#3-moving-the-view-of-the-cube">section 3</a>).</p>
+<p>The app's colour scheme is the standard one used by its solvers:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Face</th><th>Colour</th></tr></thead>
+<tbody>
+<tr><td>Right</td><td>Orange</td></tr>
+<tr><td>Left</td><td>Red</td></tr>
+<tr><td>Up</td><td>Yellow</td></tr>
+<tr><td>Down</td><td>White</td></tr>
+<tr><td>Front</td><td>Green</td></tr>
+<tr><td>Back</td><td>Blue</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="23-control-panel-lower-half-of-the-screen">2.3 Control panel (lower half of the screen)</h3>
+<ul>
+<li><strong>☰ Menu</strong> button (top-left) — opens the side menu.</li>
+<li>Two tabs: <strong>Automated &amp; Solver</strong> and <strong>Manual Controls</strong>.</li>
+<li>A shared button row under both tabs: <strong>▶ Play, ⏭ Step, 🔴 Record, ■ Stop, 💾 Save</strong>.</li>
+</ul>
+<p>Short <strong>toast</strong> messages (for example “Playback completed” or “Consistency check passed: cube state is valid.”) appear at the bottom of the cube view and disappear on their own.</p>
+<h3 id="24-the-side-menu">2.4 The side menu</h3>
+<p>Tap <strong>☰</strong> to open <strong>Menu Options</strong>, and tap anywhere outside it (or <strong>✖</strong>) to close it. On the Android build the phone's back button closes the menu, then an open dialog, before it leaves the app. The menu contains:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Menu item</th><th>Opens</th></tr></thead>
+<tbody>
+<tr><td>⚙️ <strong>Algorithm Manager</strong></td><td>Create, edit, load, share and delete saved algorithms.</td></tr>
+<tr><td>🎨 <strong>Custom Cube Manager</strong></td><td>Save, load, rename, share and delete custom patterns.</td></tr>
+<tr><td>💾 <strong>Export &amp; Import</strong></td><td>Full-library backup and restore.</td></tr>
+<tr><td>💎 <strong>Premium Features</strong> (badge <strong>PRO</strong>)</td><td>The paid extras. Outside the scope of this guide, which covers everything that is free and already part of the app.</td></tr>
+<tr><td>📖 <strong>User's Guide</strong></td><td>A condensed copy of this guide, built into the app itself (see below).</td></tr>
+<tr><td>ℹ️ <strong>About</strong></td><td>App name and version.</td></tr>
+<tr><td>⚙️ <strong>Preferences</strong></td><td>Display notation and solver method.</td></tr>
+</tbody>
+</table>
+</div>
+<p>A condensed, phone-sized version of this guide ships inside the app: <strong>📖 User's Guide</strong> opens a scrollable screen with a row of jump buttons (Quick start, Screen, View, Solver tab, Manual, Record, Painter, Library, Backup, Notation, Fixes), and the <strong>A−</strong> / <strong>A+</strong> buttons in its header change the text size in three steps — the app turns pinch zoom off, so that is the way to enlarge the text. The choice is remembered. This document stays the full reference: it adds worked examples, the complete FAQ and the glossary, and the in-app guide links to it in the project repository (that link needs a connection; everything inside the app works offline).</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="3-moving-the-view-of-the-cube">3. Moving the view of the cube</h2>
+<p>Changing how you <em>see</em> the cube (the first three sections below) never changes the cube's state and is never recorded as a move. The arrows in <a href="#34-rotating-the-cube-itself-with-the-arrows">section 3.4</a> are different: they really do rotate the cube, and they <em>are</em> recorded.</p>
+<h3 id="31-drag-to-orbit">3.1 Drag to orbit</h3>
+<p>Touch and drag (or click and drag) anywhere on the cube to swing the camera around it. When you let go, the view glides back to the standard three-quarter angle, keeping your zoom level. This snap-back keeps the cube readable, and it also stops the camera from slowly drifting out of alignment after lots of dragging.</p>
+<h3 id="32-pinch-or-scroll-to-zoom">3.2 Pinch or scroll to zoom</h3>
+<p>Pinch with two fingers on a phone, or use the mouse wheel / trackpad on a computer. Zoom is remembered when the view snaps back.</p>
+<h3 id="33-use-the-tilt-slider">3.3 Use the tilt slider</h3>
+<p>The small <strong>⟨⟩</strong> slider at the top-right of the cube view changes the <em>home</em> angle that the camera returns to:</p>
+<ul>
+<li>Far left (0) — the default three-quarter view.</li>
+<li>Far right (1) — straight-on, front-facing view.</li>
+</ul>
+<p>Anything in between is a smooth blend of the two. Your choice is remembered the next time you open the app.</p>
+<p>Panning is deliberately turned off, so you can't accidentally push the cube off-screen.</p>
+<h3 id="34-rotating-the-cube-itself-with-the-arrows">3.4 Rotating the cube itself with the arrows</h3>
+<p>Six arrow buttons float over the cube view. Each one turns the <strong>whole cube</strong> by 90° — they are real moves (<code>x</code>, <code>y</code>, <code>z</code> in notation), not camera moves:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Arrow</th><th>Position</th><th>Rotation</th></tr></thead>
+<tbody>
+<tr><td>↻ <strong>z</strong></td><td>top-left corner</td><td>Roll clockwise</td></tr>
+<tr><td>↺ <strong>z'</strong></td><td>top-right corner</td><td>Roll counter-clockwise</td></tr>
+<tr><td>▲ <strong>x</strong></td><td>top centre</td><td>Pitch up</td></tr>
+<tr><td>▼ <strong>x'</strong></td><td>bottom centre</td><td>Pitch down</td></tr>
+<tr><td>◀ <strong>y'</strong></td><td>left centre</td><td>Yaw left</td></tr>
+<tr><td>▶ <strong>y</strong></td><td>right centre</td><td>Yaw right</td></tr>
+</tbody>
+</table>
+</div>
+<p>The small letters on the arrows follow your <a href="#121-algorithm-display-notation">notation preference</a>, so they read <code>WA</code> / <code>WI</code> and so on when CAMARI is selected.</p>
+<p>Because these are moves, they are added to the history, can be undone, and can be recorded into an algorithm like any other turn. The algorithm field also accepts them as text (<code>x</code>, <code>y</code>, <code>z</code>, with <code>'</code> for the reverse direction).</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="4-the-automated-and-solver-tab">4. The Automated and Solver tab</h2>
+<p>This tab is open when you start the app. It holds the cube-wide tools, the animation speed, the algorithm field and the picker for the built-in library.</p>
+<h3 id="41-the-cube-buttons">4.1 The cube buttons</h3>
+<p>The row at the top of the panel has five buttons. The first three show only an icon:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Button</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>🔀</td><td><strong>Scramble</strong> — turns the cube 20 times on random faces in random directions.</td></tr>
+<tr><td>🔍</td><td><strong>Check</strong> — verifies the cube is in a legal state and reports the result.</td></tr>
+<tr><td>✨</td><td><strong>Solve</strong> — calculates a full solution and puts it in the algorithm field.</td></tr>
+<tr><td>↺ <strong>Custom</strong></td><td>Returns the cube to the last custom pattern you loaded.</td></tr>
+<tr><td>↺ <strong>Classic</strong></td><td>Rebuilds the classic solved cube.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Scramble</strong> picks 20 random quarter turns from the six outer faces (<code>U D L R F B</code>), each clockwise or counter-clockwise, and plays them quickly. A scramble clears the move history first, so the scramble itself cannot be undone — the app treats it as a fresh start. If a turn is still animating when you tap it, nothing happens; tap again once the cube is still. (The history was already emptied by that first tap, so <strong>Undo</strong> stays greyed out even though the cube did not move.)</p>
+<p><strong>Check</strong> reads the 54 stickers currently on the cube and confirms each of the six colours appears exactly nine times. A toast reports either “Consistency check passed: cube state is valid.” or “Consistency check failed:” followed by the reason (for example <code>Invalid count for face U: found 8, expected 9</code>).</p>
+<p><strong>Solve</strong> runs that same test first. If the cube fails it, Solve simply stops — nothing is solved and nothing turns — so press 🔍 <strong>Check</strong> to see which colour is wrong. If the test passes, the cube goes to the solver chosen in Preferences and the app:</p>
+<ol>
+<li>Adds the whole-cube rotations needed so the solution is written for the way the cube is currently oriented on screen.</li>
+<li>Writes the full solution into the algorithm field.</li>
+<li>Loads the solution into the player and leaves it <strong>paused on the first move</strong>. It does not start turning by itself — press <strong>▶ Play</strong> to watch it, or <strong>⏭ Step</strong> to walk through it one move at a time.</li>
+</ol>
+<p>Solving clears the move history, because a solution is treated as a new starting point. If the solver cannot answer, a dialog explains why (for example the stickers cannot form a real cube, or the solver did not respond in time).</p>
+<p>The two solvers are described in <a href="#122-solve-button-method">section 12.2</a>.</p>
+<p><strong>↺ Custom</strong> puts the cube back exactly as it was when you last loaded a saved pattern, including its rotation and the direction it was facing on screen. If you have not loaded a pattern since opening the app, it simply rebuilds the solved cube.</p>
+<p><strong>↺ Classic</strong> always rebuilds the classic solved cube and forgets the loaded pattern, so a later <strong>↺ Custom</strong> also gives you a solved cube.</p>
+<p>Both reset buttons are ignored while a turn is still animating. Neither of them clears the move history or the algorithm field — and because the old history survives, pressing <strong>Undo</strong> right after <strong>↺ Custom</strong> or <strong>↺ Classic</strong> would replay the inverse of an old move on the cube you just reset. Use <strong>Reset History</strong> (Manual Controls tab) if you want a clean slate.</p>
+<h3 id="42-animation-speed">4.2 Animation speed</h3>
+<p>The <strong>Fast — Slow</strong> slider (with the current value in milliseconds on the right) sets how long one quarter turn takes: <strong>50 ms (fastest) to 600 ms (slowest)</strong> in 25 ms steps, starting at 200 ms. A higher number means a slower, easier-to-follow turn.</p>
+<ul>
+<li>The change takes effect immediately, even on a playback that is already running.</li>
+<li>Manual taps, playback, solver playback and reset animations all use this speed.</li>
+<li>Scrambles are deliberately quicker than the slider allows (capped at 120 ms per turn) so a scramble does not take 12 seconds.</li>
+<li>The speed is not stored between sessions; the app starts at 200 ms when it opens.</li>
+</ul>
+<h3 id="43-choosing-an-algorithm">4.3 Choosing an algorithm</h3>
+<p>The row above the algorithm field shows the name of whatever is currently selected (<code>-- Custom Input / Select Saved --</code> when nothing is picked) and a <strong>☰</strong> button.</p>
+<ul>
+<li>Tap <strong>☰</strong> to open the <strong>Select Algorithm</strong> bottom sheet. It lists the built-in library grouped by category, with your own <strong>Saved Algorithms</strong> group at the top. Tap any row to load it. Close the sheet with <strong>Close</strong>, by tapping outside it, or with the phone's back button.</li>
+<li>The same list is available as an invisible drop-down in that row, so hardware keyboards and screen readers can move through it directly.</li>
+</ul>
+<p>Loading an algorithm — from the sheet, the field's drop-down, or the Algorithm Manager — fills the algorithm field, resets the player to the start of that algorithm, and shows an “Algorithm loaded into the player.” toast.</p>
+<p>To use something that is not in the list, type into the field: <code>Type moves (e.g. R U R' U') or choose above</code>. Typing clears the current selection, so the row goes back to <code>-- Custom Input / Select Saved --</code>. The <strong>×</strong> button beside the field clears both the text and the player.</p>
+<p>Nothing turns until you press <strong>▶</strong> or <strong>⏭</strong>.</p>
+<h3 id="44-the-shared-button-row">4.4 The shared button row</h3>
+<p>This row sits under both tabs and is always available.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Button</th><th>Name</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>▶</td><td><strong>Play</strong></td><td>Starts the algorithm in the field from its first move.</td></tr>
+<tr><td>⏸</td><td><strong>Pause</strong></td><td>Appears in place of Play while the algorithm is running.</td></tr>
+<tr><td>▶</td><td><strong>Resume</strong></td><td>Appears in place of Pause once you have paused.</td></tr>
+<tr><td>⏭</td><td><strong>Step</strong></td><td>Performs exactly one move and pauses again.</td></tr>
+<tr><td>🔴</td><td><strong>Record</strong></td><td>Starts or stops a recording session.</td></tr>
+<tr><td>■</td><td><strong>Stop</strong></td><td>Cancels the current playback (or finishes a recording). Greyed out when idle.</td></tr>
+<tr><td>💾</td><td><strong>Save</strong></td><td>Opens the Algorithm Manager with the current moves ready to name and save.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Play</strong> starts (or resumes) the algorithm and animates every move in turn. While it runs the button reads <strong>⏸ Pause</strong>; tapping it lets the move already in progress finish before stopping. Tapping again reads <strong>▶ Resume</strong> and continues from the same place. When the last move is done the button returns to <strong>▶ Play</strong>, and the next tap starts the algorithm again from the beginning.</p>
+<p>If the algorithm you are playing is marked “Requires reset”, the cube is rebuilt in its solved state before the first move, so the algorithm always starts from the position it was designed for. Built-in presets carry this flag when they need it, and you can set it on your own algorithms with the checkbox in the Algorithm Manager (see <a href="#8-algorithm-manager">section 8</a>).</p>
+<p>If the field contains something the app cannot read, a toast explains the problem and nothing turns.</p>
+<p><strong>Step</strong> gives you total control: it performs the next single quarter turn and stays paused.</p>
+<ul>
+<li>The first press sets the player up at the first move and performs it.</li>
+<li>Every further press performs one more move.</li>
+<li>When the last move is done, the button gives a short wiggle, a “Playback completed” toast appears, and the player is finished.</li>
+<li>Pressing Step again after that starts the algorithm over from move one (re-applying the reset flag if it is set).</li>
+</ul>
+<p><strong>Stop</strong> cancels the playback immediately and marks the algorithm as finished, so a later <strong>Step</strong> begins again at the first move. It shows a “Playback stopped” toast and is also the way to finish a recording. It is greyed out when nothing is playing or recording.</p>
+<p><strong>Save</strong> opens the Algorithm Manager with the current field contents already in the Moves box and the cursor waiting in the Name box, so one tap plus a name stores the algorithm. If the algorithm field is empty, the button does nothing at all.</p>
+<h3 id="45-reversing-an-algorithm">4.5 Reversing an algorithm</h3>
+<p>The <strong>Reverse algorithm ↔️</strong> button in the design bar (hidden while painter mode is on) turns the algorithm in the field back to front: the moves are reversed in order <em>and</em> each one is inverted. So <code>R U R' U'</code> becomes <code>U R U' R'</code>, which undoes it exactly.</p>
+<ul>
+<li>It works in both notations and writes the result in your display notation.</li>
+<li>The reversed algorithm is loaded into the player, paused on its first move, so you can <strong>▶ Play</strong> or <strong>⏭ Step</strong> through it.</li>
+<li>With an empty field it simply says “Enter an algorithm to reverse.”</li>
+</ul>
+<h3 id="46-a-typical-practice-session">4.6 A typical practice session</h3>
+<ol>
+<li>Tap 🔀 <strong>Scramble</strong>.</li>
+<li>Tap ✨ <strong>Solve</strong>, then choose how to watch it: <strong>▶ Play</strong> to run the whole thing, or <strong>⏭ Step</strong> to study it one move at a time.</li>
+<li>Tap 💾 <strong>Save</strong> to keep the solution in your library under a name you choose.</li>
+<li>Open <strong>Manual Controls</strong> to undo, redo or repeat any part of it by hand.</li>
+</ol>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="5-the-manual-controls-tab">5. The Manual Controls tab</h2>
+<p>Turn faces yourself, one quarter turn at a time.</p>
+<h3 id="51-the-slice-buttons">5.1 The slice buttons</h3>
+<p>There are nine slices, each with two buttons:</p>
+<ul>
+<li><strong>Top row — clockwise:</strong> <code>U</code> <code>D</code> <code>L</code> <code>R</code> <code>F</code> <code>B</code> <code>M</code> <code>E</code> <code>S</code></li>
+<li><strong>Bottom row — counter-clockwise:</strong> <code>U'</code> <code>D'</code> <code>L'</code> <code>R'</code> <code>F'</code> <code>B'</code> <code>M'</code> <code>E'</code> <code>S'</code></li>
+</ul>
+<p><code>U</code>, <code>D</code>, <code>L</code>, <code>R</code>, <code>F</code> and <code>B</code> are the six outer faces. <code>M</code> is the middle slice between left and right, <code>E</code> the slice between up and down, and <code>S</code> the slice between front and back.</p>
+<p>Every tap animates one quarter turn and is added to the move history. The printed labels follow your <a href="#121-algorithm-display-notation">display notation preference</a>: with CAMARI selected the same buttons read <code>TA TI DA DI LA LI …</code> and so on. The slice a button turns never changes.</p>
+<h3 id="52-undo-redo-and-reset-history">5.2 Undo, Redo and Reset History</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Button</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>↩ <strong>Undo</strong></td><td>Reverses the most recent move.</td></tr>
+<tr><td><strong>Redo</strong> ↪</td><td>Re-applies the move you just undid.</td></tr>
+<tr><td><strong>Reset History</strong></td><td>Empties the undo and redo lists. The cube is not changed.</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Undo and Redo are greyed out when there is nothing to undo or redo.</li>
+<li>Making a new move after undoing throws away the redo list, as you would expect.</li>
+<li><strong>Reset History</strong> is the way to say <em>treat the current cube state as the starting point</em>. It does not touch the cube, the algorithm field or your saved items.</li>
+<li>Whole-cube rotations from the view arrows share the same history, so Undo reverses those too.</li>
+<li>Playing an algorithm also writes its moves to the history, so Undo walks back through the moves you watched.</li>
+<li>A solution played back after ✨ <strong>Solve</strong> is deliberately <em>not</em> added to the history, and the history was already cleared when the solver took over — so Undo stays greyed out after watching a solution.</li>
+<li>Painting stickers and loading a pattern are not recorded as moves, so Undo never removes paint. Loading a pattern does <strong>not</strong> clear the old history either, so an Undo straight after a load would turn a slice of the loaded pattern — press <strong>Reset History</strong> first (or reload the pattern with <strong>↺ Custom</strong> if it happens).</li>
+</ul>
+<p>The app clears the history by itself when it makes sense to start fresh: after a <strong>scramble</strong>, when you turn <strong>painter mode on</strong>, and when the <strong>solver starts</strong> working. While a recording is running, Reset History is disabled and Undo stops at the point where the recording began.</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="6-recording-your-own-moves">6. Recording your own moves</h2>
+<p>Recording turns what you do on screen into an algorithm, so you never have to write down moves by hand.</p>
+<ol>
+<li>Tap 🔴 <strong>Record</strong>. The button turns red and changes to a <strong>⏹</strong> stop symbol.</li>
+<li>Turn the cube however you like — Manual Controls buttons, the view arrows, or by playing an algorithm.</li>
+<li>Tap the <strong>⏹</strong> button again (or ■ <strong>Stop</strong>) to finish.</li>
+<li>Your moves are written into the algorithm field, in the order you made them, ready to play, save, share or reverse.</li>
+</ol>
+<p>Good to know:</p>
+<ul>
+<li>Recording starts where you are. Moves you made <em>before</em> tapping Record are not included.</li>
+<li>If you undo during a recording, the undone moves are dropped from the result; you cannot undo past the moment the recording started.</li>
+<li>Reset History is disabled while recording, so a recording can't be wiped by accident. For the same reason a scramble or a solve started mid-recording leaves the history untouched.</li>
+<li>A solver solution being replayed is not recorded; every other turn is.</li>
+<li>If you made no moves at all, the algorithm field is left untouched.</li>
+<li>The text is written in your display notation, so with CAMARI selected you get CAMARI words instead of classic letters. A wide turn stays together as one paired word (<code>TAP</code>, not <code>TA TIP</code>) so it reads the way the turn is named, and a doubled turn is written compactly with a repeat count (<code>TA2</code>).</li>
+<li>Recording does not save anything by itself. Press 💾 <strong>Save</strong> afterwards to keep it.</li>
+</ul>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="7-cube-painter-and-custom-patterns">7. Cube Painter and custom patterns</h2>
+<p>Painter mode lets you colour the cube freely — logo cubes, patterns you invent, or a simplified cube for teaching — and then save the result as a pattern you can reload later.</p>
+<h3 id="71-painting">7.1 Painting</h3>
+<ol>
+<li>Tap 🖌️ to switch painter mode on. The button stays highlighted and the colour swatches appear in the design bar. (The <strong>Reverse algorithm</strong> button hides while you paint, to leave room.)</li>
+<li>Tap a swatch to choose a colour: red, orange, yellow, white, green, blue, or the dark <strong>erase</strong> swatch.</li>
+<li>Tap a sticker on the cube to paint it. Only the coloured outer stickers can be painted; tapping the black seams between pieces does nothing.</li>
+<li>Repeat as often as you like, then switch painter mode off to go back to turning the cube.</li>
+</ol>
+<p>Notes:</p>
+<ul>
+<li>The dark grey swatch is an eraser: it turns the sticker into the black plastic colour, so the face looks bare there again.</li>
+<li>Paint <strong>tap</strong>, don't drag. A drag still rotates the view, and the piece you first touched would be painted as well.</li>
+<li>Painting only changes sticker colours. It never moves pieces, so a painted cube keeps its current arrangement.</li>
+<li>Turning painter mode on clears the move history, so start painting when the cube is in the state you want. Painting itself cannot be undone — use <strong>↺ Classic</strong> to start again from a clean cube.</li>
+</ul>
+<h3 id="72-saving-the-design">7.2 Saving the design</h3>
+<p>Tap 💾 in the design bar (or choose 🎨 <strong>Custom Cube Manager</strong> from the menu) to open the <strong>Cube Design Manager</strong>.</p>
+<ul>
+<li>Type a name in <code>Pattern name (e.g. Checker)</code> and tap 💾. Your current cube is stored: every piece's position, every sticker colour, and the direction the cube is facing.</li>
+<li>Leaving the name blank does nothing.</li>
+<li>If a pattern with that name already exists, the app asks <code>A pattern named "…" already exists. Overwrite it?</code> — confirm to replace it, or cancel to pick another name.</li>
+</ul>
+<h3 id="73-managing-saved-patterns">7.3 Managing saved patterns</h3>
+<p>Tap a name in the list to select it. The toolbar shows <strong>Select a pattern</strong> or <strong>Selected pattern</strong>, and the four action buttons become available:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Button</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>↥</td><td><strong>Load</strong> — rebuilds the cube exactly as saved and closes the window.</td></tr>
+<tr><td>Share icon</td><td><strong>Share</strong> — creates a link for the pattern (see <a href="#11-sharing-patterns-and-algorithms">section 11</a>).</td></tr>
+<tr><td>✏️</td><td><strong>Rename</strong> — puts the current name in the box, selected, ready to type over. Tap 💾 to keep the new name. Renaming does not change the design.</td></tr>
+<tr><td>🗑️</td><td><strong>Delete</strong> — removes the pattern from the list.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Deleting is immediate — there is no confirmation prompt</strong>, so check you have the right pattern selected.</p>
+<p>Once a pattern is loaded, <strong>↺ Custom</strong> in the Automated and Solver tab will return to it at any time, and <strong>↺ Classic</strong> builds a fresh solved cube and forgets it. Loading a pattern leaves the move history untouched, so press <strong>Reset History</strong> if you want a clean slate (see <a href="#52-undo-redo-and-reset-history">section 5.2</a>).</p>
+<h3 id="74-restore-patterns-from-master-file">7.4 Restore Patterns from Master File</h3>
+<p>The button at the bottom of the Cube Design Manager, <strong>📂 Restore Patterns from Master File</strong>, recovers the pattern list from the app's own most recent saved copy.</p>
+<ul>
+<li>On Android it restores the master copy kept inside the app's storage.</li>
+<li>In a web browser it opens a file picker so you can choose a previously saved JSON file — normally <code>camari8_master_cubes.json</code>, the file the app offered to save the first time your pattern list changed.</li>
+</ul>
+<p>Either way the restored list replaces the current one, so use it when the list looks wrong or empty after an update, or when moving data between installations.</p>
+<p>If the file you pick is not a list of patterns (or is not valid JSON at all), the restore is dropped without any message — the list simply stays as it was. Nothing is deleted, so it is safe to try again with a different file.</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="8-algorithm-manager">8. Algorithm Manager</h2>
+<p>The Algorithm Manager is your personal algorithm library. Open it from the menu (⚙️ <strong>Algorithm Manager</strong>) or with the 💾 button under the algorithm field, which also copies the current moves into the Moves box (that button does nothing while the field is empty).</p>
+<h3 id="81-saving-a-new-algorithm">8.1 Saving a new algorithm</h3>
+<ol>
+<li>Fill in <strong>Algorithm Name</strong> (for example <code>Sexy Move</code>).</li>
+<li>Fill in <strong>Moves</strong>. Classic notation and CAMARI notation both work — <code>R U R' U'</code> and <code>RA TA RI TI</code> are the same algorithm.</li>
+<li>Optionally tick <strong>Requires reset (play from solved cube)</strong>. When this is ticked, playing or stepping through the algorithm first rebuilds the solved cube, so it always starts from the position it was written for. Leave it unticked for algorithms that are meant to be applied to whatever is on screen.</li>
+<li>Tap 💾 to save.</li>
+</ol>
+<p>Both a name and moves are required; if either box is empty the 💾 button does nothing. Each save adds a new entry, so the same name can appear more than once — handy for keeping a few variations of one idea side by side. A successful save empties the form by itself and leaves edit mode, ready for the next entry. (The <strong>✖ Clear</strong> button beside 💾 has no handler in the current version and does nothing — saving is what clears the form.)</p>
+<h3 id="82-working-with-saved-algorithms">8.2 Working with saved algorithms</h3>
+<p>Tap any row in <strong>Saved Algorithms List</strong> to select it (each row shows its name and its moves). Then use the toolbar:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Button</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>↥</td><td><strong>Load</strong> — copies the algorithm into the main algorithm field, resets the player to its first move and closes the window.</td></tr>
+<tr><td>Share icon</td><td><strong>Share</strong> — creates a link for this algorithm (see <a href="#11-sharing-patterns-and-algorithms">section 11</a>).</td></tr>
+<tr><td>✏️</td><td><strong>Edit</strong> — fills the form with this algorithm, including its reset setting. Change anything and tap 💾 to update that same entry instead of creating a new one.</td></tr>
+<tr><td>🗑️</td><td><strong>Delete</strong> — removes the algorithm.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Deleting is immediate — there is no confirmation prompt.</strong></p>
+<p>Saved algorithms also appear at the top of the <strong>Select Algorithm</strong> sheet, under the group name <strong>Saved Algorithms</strong>, in the order you created them.</p>
+<h3 id="83-restore-algorithms-from-master-file">8.3 Restore Algorithms from Master File</h3>
+<p><strong>📂 Restore Algorithms from Master File</strong> (bottom of the Algorithm Manager) replaces the current list with the app's most recently saved master copy of your algorithms. On Android this is the copy in the app's internal storage; in a browser it opens a JSON file picker (the file is normally <code>camari8_master_algorithms.json</code>).</p>
+<p>As with patterns, a file the app cannot read is ignored silently — the list stays as it was.</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="9-the-built-in-algorithm-library">9. The built-in algorithm library</h2>
+<p>The app ships with <strong>101 ready-made algorithms and patterns</strong> for your 6-colour cube, grouped into six categories. They appear in the <strong>Select Algorithm</strong> sheet (open it with the ☰ button next to the algorithm field) under headings named after the categories below, with your own saved algorithms listed above them under <strong>Saved Algorithms</strong>.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Category</th><th>Entries</th><th>What is in it</th></tr></thead>
+<tbody>
+<tr><td><strong>CAMARI8</strong></td><td>1</td><td>A single demo entry named <code>CAMARI8</code> that plays a repeating slice loop.</td></tr>
+<tr><td><strong>Basic Solve Algorithms</strong></td><td>9</td><td>The beginner-method building blocks: first-layer corners left and right, second-layer edge inserts (3:00 and 9:00), yellow cross (single and double), yellow corner swap, corner alignment and edge alignment.</td></tr>
+<tr><td><strong>Other Solve Algorithms</strong></td><td>3</td><td>Alternative last-layer algorithms, including Y-Perm and A-Perm corner swaps.</td></tr>
+<tr><td><strong>Training playbacks</strong></td><td>8</td><td>A step-by-step walkthrough of the whole beginner solve, from “1. Pattern white cross start” to “8. Solve yellow layer edges playback”. Play them one after another to see a complete solve.</td></tr>
+<tr><td><strong>Training patterns</strong></td><td>6</td><td>Intermediate positions used while learning (white cross completed, white corners, second-layer edges, yellow cross, yellow corners, aligned yellow edges).</td></tr>
+<tr><td><strong>Visual Patterns</strong></td><td>74</td><td>Decorative designs: checkerboards, Cube in a Cube, H-Cube, Superflip, stripes, national flags, snakes and animals, and symmetric shapes.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Notes on using the library:</p>
+<ul>
+<li>Entries play or step exactly like your own algorithms and can be reversed with <strong>Reverse algorithm</strong> in the design bar.</li>
+<li>Every entry in <strong>Visual Patterns</strong> and <strong>Training patterns</strong> is flagged <strong>Requires reset</strong>, so playing one always starts from a solved cube and gives the intended picture. The practice playbacks are mostly <em>not</em> flagged (only the first one is), because each step continues from where the previous step left the cube. The entries in <strong>Basic Solve Algorithms</strong> and <strong>Other Solve Algorithms</strong> are plain algorithms (not flagged), so they turn the cube as it already is — use them for last-layer practice on a cube you scrambled yourself.</li>
+<li>Visual patterns are worked from a <strong>solved cube with the standard colour scheme</strong>. If your cube is painted differently, the pattern will look different (or not show up at all).</li>
+<li>A few library entries use notation you may not see every day — a repeat after a bracket, as in <code>(M2 U2)2</code>, and <code>H</code> for the middle slice between up and down, as in <code>H2</code>. Both are explained in <a href="#13-notation-reference">section 13</a>.</li>
+<li>Nothing in the library is locked, and no entry needs a purchase.</li>
+</ul>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="10-backup-export-and-import">10. Backup, export and import</h2>
+<p>Your saved algorithms and saved patterns live inside the app on your device. Use the backup tools to keep a copy somewhere safe or to move everything to another device.</p>
+<p>Open the tools from the menu: 💾 <strong>Export &amp; Import</strong> (the window is titled <strong>Data Backup &amp; Restore</strong>).</p>
+<h3 id="101-export-all-data">10.1 Export All Data</h3>
+<p>Tap <strong>📤 Export All Data (Backup)</strong>. The app writes one file containing everything:</p>
+<ul>
+<li>every saved custom pattern (with its sticker colours and orientation), and</li>
+<li>every saved algorithm (with its name and reset setting).</li>
+</ul>
+<p>The file is named <code>CAMARI8_full_backup_YYYYMMDD_HHMMSS.json</code>, so a new name is created every time you export and old backups are never overwritten.</p>
+<ul>
+<li><strong>On Android</strong> the file is written to <code>Documents/CAMARI8CubeApp/</code> and the system share sheet opens so you can send it to Drive, email, chat or a file manager straight away.</li>
+<li><strong>In a web browser</strong> the file downloads normally to your Downloads folder.</li>
+</ul>
+<p>The export never asks for confirmation and shows no “done” message; the download or the shared file <em>is</em> the confirmation. If nothing happens at all, check that the browser or Android hasn't blocked the download.</p>
+<h3 id="102-import-data">10.2 Import Data</h3>
+<p>Tap <strong>📥 Import Data (Restore)</strong> and choose a <code>.json</code> file you exported earlier (or one someone sent you). The window closes when the import has finished.</p>
+<ul>
+<li>Whatever the file contains <strong>replaces</strong> the matching lists already in the app, so take a backup first if you have items you want to keep. Anything the file does not contain is left alone — a file with only algorithms, for instance, leaves your patterns untouched.</li>
+<li>Backup files from older versions of the app are accepted.</li>
+<li>If the file cannot be read, is not a backup file, or holds neither algorithms nor patterns, nothing is changed. There is no error message — the <strong>Data Backup &amp; Restore</strong> window simply stays open, which is your cue that the import did not happen. Try another file.</li>
+</ul>
+<h3 id="103-a-safe-routine">10.3 A safe routine</h3>
+<p>Export after every good run of designing or saving algorithms, especially before reinstalling the app or clearing browser data. Clearing site data in a browser, or uninstalling the app, deletes the in-app copies — the exported file is your safety net.</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="11-sharing-patterns-and-algorithms">11. Sharing patterns and algorithms</h2>
+<p>You can send one saved pattern or one saved algorithm to another person as a link.</p>
+<ol>
+<li>Open the <strong>Cube Design Manager</strong> (for a pattern) or the <strong>Algorithm Manager</strong> (for an algorithm).</li>
+<li>Tap the item once to select it.</li>
+<li>Tap the <strong>share</strong> button.</li>
+</ol>
+<p>What happens next depends on your device:</p>
+<ul>
+<li><strong>On Android</strong> the system share sheet opens with the link — send it by chat, mail, notes or anything else installed.</li>
+<li><strong>In a browser that supports sharing</strong>, the browser's own share menu opens.</li>
+<li><strong>Otherwise</strong> the link is copied to your clipboard and a “Share link copied to clipboard.” toast appears. As a last resort a small dialog shows the link so you can copy it by hand.</li>
+</ul>
+<p>Every link looks like this:</p>
+<pre><code>https://camari8-site.pages.dev/?puzzle=&lt;encoded data&gt;</code></pre>
+<p>The whole item is encoded inside the link — nothing is uploaded and no account is involved. A pattern link is longer than an algorithm link because it carries all 54 stickers.</p>
+<h3 id="receiving-a-link">Receiving a link</h3>
+<ul>
+<li><strong>With the app installed:</strong> tap the link and the item is added to your library, with a “Shared item imported.” toast. If you already have an item with the same name, the shared one replaces it.</li>
+<li><strong>Without the app:</strong> the link opens the project's web page instead, which explains the app.</li>
+</ul>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>The link is not a picture or a message; it can be opened only by the app (or by the web page, which will offer to get the app).</li>
+<li>Share links do not expire, but the item they carry is a snapshot — later edits to your copy are not reflected in a link you have already sent.</li>
+</ul>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="12-preferences">12. Preferences</h2>
+<p>Open the menu and choose ⚙️ <strong>Preferences</strong>. Every change is saved as soon as you pick it, so there is nothing to confirm.</p>
+<h3 id="121-algorithm-display-notation">12.1 Algorithm display notation</h3>
+<p>This decides how the app <em>writes</em> algorithms for you:</p>
+<div class="tw">
+<table>
+<thead><tr><th>Option</th><th>Behaviour</th></tr></thead>
+<tbody>
+<tr><td><strong>Default (entered notation)</strong></td><td>Algorithms are shown the way they were written.</td></tr>
+<tr><td><strong>Classic</strong></td><td>Algorithms are shown with classic letters (<code>R U R' U'</code>, <code>M M</code>, <code>x</code>, <code>f</code>).</td></tr>
+<tr><td><strong>CAMARI</strong></td><td>Algorithms are shown as CAMARI words (<code>RA TA RI TI</code>, <code>MA MA</code>, <code>WA</code>, <code>FAP</code>).</td></tr>
+</tbody>
+</table>
+</div>
+<p>The app accepts both spellings of a half turn — a repeat count (<code>MA2</code>) or two identical words (<code>MA MA</code>). Which one you <em>see</em> depends on where the text came from: a solution from ✨ <strong>Solve</strong> and your own recordings are written compactly (<code>TA2</code>), while an algorithm loaded from the library or from your saved list is written one word per quarter turn (<code>TA TA</code>).</p>
+<p>The setting affects:</p>
+<ul>
+<li>what appears in the algorithm field when you load a preset, load a saved algorithm, solve the cube or finish a recording;</li>
+<li>the labels on the nine Manual Controls slices and on the six view arrows.</li>
+</ul>
+<p>Two things it never does:</p>
+<ul>
+<li><strong>It never converts what you type.</strong> If you type classic notation while CAMARI is selected, your text stays exactly as typed — the app simply reads it correctly.</li>
+<li><strong>It never splits a wide turn.</strong> Solver solutions and recordings keep a two-layer turn together as a single paired CAMARI word (<code>TAP</code>), not as two separate syllables.</li>
+</ul>
+<p>Both notation styles are read correctly, but <strong>one algorithm must use one style</strong> — the app refuses a field that mixes them and tells you “Use either CAMARI or classic notation, not mixed.”</p>
+<h3 id="122-solve-button-method">12.2 Solve button method</h3>
+<p>Choose which of the two built-in solvers the ✨ <strong>Solve</strong> button uses. Both work offline.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Option</th><th>Behaviour</th></tr></thead>
+<tbody>
+<tr><td><strong>Kociemba (instant, fewest moves)</strong></td><td>Default. Returns a short solution (usually around 20 moves) almost immediately. Best when you just want the cube solved.</td></tr>
+<tr><td><strong>CFOP (cross, F2L, OLL, PLL)</strong></td><td>Solves the cube the way a speedsolver would: cross, then the first two layers, then OLL and PLL. It takes a few seconds and produces a longer sequence, but it is the one to follow if you are learning the method.</td></tr>
+</tbody>
+</table>
+</div>
+<p>If CFOP cannot find a solution it falls back to a Kociemba solution rather than failing silently, and a toast explains it: <code>CFOP could not finish this cube (…). Showing the Kociemba solution instead.</code></p>
+<h3 id="123-settings-the-app-remembers">12.3 Settings the app remembers</h3>
+<p>Remembered between sessions:</p>
+<ul>
+<li>display notation and solver method (Preferences),</li>
+<li>the tilt/angle of the cube view,</li>
+<li>all saved algorithms and all saved patterns.</li>
+</ul>
+<p>Not remembered:</p>
+<ul>
+<li>the animation speed (starts at 200 ms each time),</li>
+<li>how far you zoomed in or out,</li>
+<li>the algorithm field, the move history and the cube state — the app always opens on a solved cube with an empty algorithm field.</li>
+</ul>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="13-notation-reference">13. Notation reference</h2>
+<p>The algorithm field understands two ways of writing moves. You can use whichever you prefer; the app reads both, and Preferences decides which one it writes back to you.</p>
+<h3 id="131-classic-notation">13.1 Classic notation</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>U</code> <code>D</code></td><td>Up and Down faces</td></tr>
+<tr><td><code>L</code> <code>R</code></td><td>Left and Right faces</td></tr>
+<tr><td><code>F</code> <code>B</code></td><td>Front and Back faces</td></tr>
+<tr><td><code>M</code></td><td>Middle slice between Left and Right — turns the same way as <code>L</code></td></tr>
+<tr><td><code>E</code></td><td>Middle slice between Up and Down — turns the same way as <code>D</code></td></tr>
+<tr><td><code>S</code></td><td>Middle slice between Front and Back — turns the same way as <code>F</code></td></tr>
+<tr><td><code>x</code> <code>y</code> <code>z</code></td><td>The whole cube, turning like <code>R</code>, <code>U</code> and <code>F</code> respectively</td></tr>
+<tr><td><code>'</code> after a move</td><td>Counter-clockwise instead of clockwise (<code>R'</code>)</td></tr>
+<tr><td><code>2</code> after a move</td><td>Half turn (<code>R2</code>, <code>U2</code>)</td></tr>
+<tr><td>lowercase (<code>r</code>) or <code>Rw</code></td><td>Wide turn: the face plus the slice behind it (<code>r</code>, <code>u</code>, <code>f</code> …)</td></tr>
+<tr><td><code>( … )</code></td><td>A group of moves; may take <code>'</code> to reverse it or a count to repeat it</td></tr>
+</tbody>
+</table>
+</div>
+<p>A plain letter means “turn that face a quarter turn clockwise, as if you were looking straight at it”.</p>
+<p><strong>Repeats and groups.</strong> A number after a move repeats it: <code>U3</code> is three clockwise <code>U</code> turns (use <code>U'</code> for one counter-clockwise turn). A bracket groups moves so you can repeat or reverse the whole group at once:</p>
+<pre><code>(M2 U2)2       → the group twice: M2 U2 M2 U2
+(R U R' U')3   → the sexy move three times
+(R U R' U')'   → the group backwards</code></pre>
+<p><strong>Extra letters.</strong> The app also accepts <code>T</code> for <code>U</code>, <code>H</code> for <code>E</code>, <code>C</code> for <code>S</code> and <code>W</code> for <code>x</code>, so notation copied from CAMARI material can be pasted into a classic algorithm. These are the letters CAMARI users already know.</p>
+<h3 id="132-camari-notation">13.2 CAMARI notation</h3>
+<p>Every move is one <strong>pair of two letters</strong>: a slice letter plus a vowel. A <em>word</em> is built from one or more such pairs written with no space between them (see <strong>Spacing</strong> below).</p>
+<ul>
+<li><strong>Vowel <code>A</code></strong> — clockwise.</li>
+<li><strong>Vowel <code>I</code></strong> — counter-clockwise (think of it as <em>inverse</em>).</li>
+</ul>
+<div class="tw">
+<table>
+<thead><tr><th>Slice</th><th>Clockwise</th><th>Counter-clockwise</th><th>Same as classic</th></tr></thead>
+<tbody>
+<tr><td>Up</td><td><code>TA</code></td><td><code>TI</code></td><td><code>U</code> / <code>U'</code></td></tr>
+<tr><td>Down</td><td><code>DA</code></td><td><code>DI</code></td><td><code>D</code> / <code>D'</code></td></tr>
+<tr><td>Left</td><td><code>LA</code></td><td><code>LI</code></td><td><code>L</code> / <code>L'</code></td></tr>
+<tr><td>Right</td><td><code>RA</code></td><td><code>RI</code></td><td><code>R</code> / <code>R'</code></td></tr>
+<tr><td>Front</td><td><code>FA</code></td><td><code>FI</code></td><td><code>F</code> / <code>F'</code></td></tr>
+<tr><td>Back</td><td><code>BA</code></td><td><code>BI</code></td><td><code>B</code> / <code>B'</code></td></tr>
+<tr><td>Middle (L–R)</td><td><code>MA</code></td><td><code>MI</code></td><td><code>M</code> / <code>M'</code></td></tr>
+<tr><td>Middle (U–D)</td><td><code>HA</code></td><td><code>HI</code></td><td><code>E</code> / <code>E'</code></td></tr>
+<tr><td>Middle (F–B)</td><td><code>CA</code></td><td><code>CI</code></td><td><code>S</code> / <code>S'</code></td></tr>
+<tr><td>Whole cube, like R</td><td><code>WA</code></td><td><code>WI</code></td><td><code>x</code> / <code>x'</code></td></tr>
+<tr><td>Whole cube, like U</td><td><code>YA</code></td><td><code>YI</code></td><td><code>y</code> / <code>y'</code></td></tr>
+<tr><td>Whole cube, like F</td><td><code>ZA</code></td><td><code>ZI</code></td><td><code>z</code> / <code>z'</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>So <code>TARA TIRI</code> is the familiar <code>U R U' R'</code>. The app's own name is spelled <code>CA MA RI</code>, which in classic letters is <code>S M R'</code> — that is exactly what the library's <code>CAMARI8</code> entry plays, eight times over (24 moves).</p>
+<p><strong>Wide (two-layer) turns.</strong> Add a <code>P</code> to a face pair to turn two layers at once:</p>
+<div class="tw">
+<table>
+<thead><tr><th>CAMARI</th><th>Classic</th></tr></thead>
+<tbody>
+<tr><td><code>TAP</code></td><td><code>u</code> (wide <code>U</code>)</td></tr>
+<tr><td><code>DAP</code></td><td><code>d</code></td></tr>
+<tr><td><code>LAP</code></td><td><code>l</code></td></tr>
+<tr><td><code>RAP</code></td><td><code>r</code></td></tr>
+<tr><td><code>FAP</code></td><td><code>f</code></td></tr>
+<tr><td><code>BAP</code></td><td><code>b</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><code>P</code> is only valid on the six face pairs. A word such as <code>MAP</code> is not accepted, and because the app cannot read it as CAMARI it falls back to reading the field as classic and shows the mixed-notation message instead of a specific complaint.</p>
+<p><strong>Repeats.</strong> A number after a word repeats that whole word: <code>TA2</code> is <code>U2</code>, <code>MA8</code> is eight <code>M</code> turns, <code>RAP2</code> is a wide <code>R</code> half turn. <code>TA2</code> and <code>TA TA</code> mean exactly the same thing; the app writes the compact form (<code>TA2</code>) in solutions and recordings and the spelled-out form (<code>TA TA</code>) when it displays a saved or built-in algorithm.</p>
+<p>A number at the end of an unbroken run of words repeats the whole run: <code>RATARITI2</code> is <code>RA TA RI TI</code> twice, and <code>CAMARI8</code> is <code>CA MA RI</code> eight times. Words separated by spaces are counted separately, so in <code>TA RA8</code> only <code>RA</code> repeats.</p>
+<p><strong>Spacing.</strong> Spaces between words are optional — <code>TARATI</code> is read as <code>TA RA TI</code> — but a space between separate algorithms is safer and easier to read.</p>
+<h3 id="133-which-style-is-in-this-field">13.3 Which style is in this field?</h3>
+<p>The app decides per field, once:</p>
+<ul>
+<li>If <strong>every</strong> word reads as a valid CAMARI word, the field is treated as CAMARI.</li>
+<li>Otherwise it is treated as classic notation.</li>
+<li>A field that would need both at once is refused with “Use either CAMARI or classic notation, not mixed.”</li>
+</ul>
+<p>If you paste something and nothing happens, this is the usual reason: change the CAMARI words to classic letters (or the other way round) so the field uses a single style.</p>
+<h3 id="134-worked-examples">13.4 Worked examples</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Purpose</th><th>Classic</th><th>CAMARI</th></tr></thead>
+<tbody>
+<tr><td>Sexy move</td><td><code>R U R' U'</code></td><td><code>RA TA RI TI</code></td></tr>
+<tr><td>Checkerboard</td><td><code>M2 E2 S2</code></td><td><code>MA MA HA HA CA CA</code></td></tr>
+<tr><td>Wide turns</td><td><code>r u f x y z</code></td><td><code>RAP TAP FAP WA YA ZA</code></td></tr>
+<tr><td>Cube in a Cube</td><td><code>F L F U' R U F2 L2 U' L' B D' B' L2 U</code></td><td><code>FA LA FA TI RA TA FA FA LA LA TI LI BA DI BI LA LA TA</code></td></tr>
+<tr><td>Superflip</td><td><code>U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2</code></td><td><code>TA RA RA FA BA RA BA BA RA TA TA LA BA BA RA TI DI RA RA FA RI LA BA BA TA TA FA FA</code></td></tr>
+</tbody>
+</table>
+</div>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="14-where-your-data-lives">14. Where your data lives</h2>
+<p>Everything the app remembers is stored on your own device:</p>
+<ul>
+<li>saved patterns (positions, sticker colours and orientation),</li>
+<li>saved algorithms (name, moves and the “requires reset” setting),</li>
+<li>your Preferences (display notation, solver method) and the view tilt.</li>
+</ul>
+<p>The app also keeps a copy of your library of its own (the “master file”) as a recovery point — that is what the two <strong>Restore … from Master File</strong> buttons use.</p>
+<ul>
+<li>On Android this copy lives in the app's private storage and is written silently every time your library changes.</li>
+<li>In a browser the app has to write it out as a file: the first time your library changes in a session, Chrome/Edge shows a save dialog for <code>camari8_master_algorithms.json</code> or <code>camari8_master_cubes.json</code>. If you cancel that dialog, the app keeps working normally from its normal storage — the master copy is just a safety net, not the main store.</li>
+</ul>
+<p>Practical consequences:</p>
+<ul>
+<li><strong>Offline use.</strong> The app is installed as a Progressive Web App / Android app and cached on the device, so the cube, the solvers, the notation engine and the built-in library all work with no connection. Only following a share link or opening the project's web page needs the internet.</li>
+<li><strong>Clearing data removes your library.</strong> Clearing site data in a browser, clearing app storage, or uninstalling the app deletes the in-app copies. An exported backup file is the only thing that survives this — see <a href="#10-backup-export-and-import">section 10</a>.</li>
+<li><strong>Nothing is uploaded.</strong> Cube states, patterns and algorithms stay on the device unless you deliberately share a link.</li>
+<li><strong>No account, no sign-in.</strong> The app has no login and no cloud storage.</li>
+</ul>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="15-troubleshooting-and-faq">15. Troubleshooting and FAQ</h2>
+<h3 id="151-common-problems">15.1 Common problems</h3>
+<p><strong>Pressing Play or Step does nothing.</strong> The algorithm field is empty, or the move that is currently animating has not finished. Type or load an algorithm, wait for the cube to settle, and try again.</p>
+<p><strong>A toast says “Use either CAMARI or classic notation, not mixed.”</strong> The field contains both styles. Rewrite it in one style — see <a href="#13-notation-reference">section 13</a>.</p>
+<p><strong>A toast says “Invalid classic notation character: …”, “Missing closing parenthesis.” or “Unexpected closing parenthesis.”</strong> The text has a typo or an unbalanced bracket; the toast names the character it could not read, or the bracket problem.</p>
+<ul>
+<li>In CAMARI each move is a <strong>pair</strong> of two letters — a slice letter plus <code>A</code> or <code>I</code>. <code>P</code> is the only other letter a pair may carry, straight after <code>T</code>, <code>D</code>, <code>L</code>, <code>R</code>, <code>F</code> or <code>B</code> (<code>RAP</code> = wide <code>R</code>). A word may hold several pairs with no space between them (<code>TARATI</code> = <code>TA RA TI</code>), with at most one repeat number, at the very end of the word (<code>RATARITI2</code>).</li>
+<li>In classic notation each move is one letter, optionally followed by <code>'</code>, <code>2</code> or <code>w</code>/<code>W</code> (<code>R'</code>, <code>U2</code>, <code>Rw</code>), and a number may repeat a move or a whole bracket (<code>U3</code>, <code>(R U R' U')3</code>).</li>
+<li>Brackets must balance: every <code>(</code> needs a matching <code>)</code>, and a <code>)</code> on its own is an error.</li>
+</ul>
+<p><strong>Undo does nothing, or stops earlier than expected.</strong> The history is cleared after a scramble, after a solve, when painter mode is switched on, and by <strong>Reset History</strong>. While recording, Undo cannot go back past the start of the recording.</p>
+<p><strong>Undo turned a slice of the pattern I just loaded (or right after ↺ Classic).</strong> Loading a pattern, <strong>↺ Custom</strong> and <strong>↺ Classic</strong> do not clear the move history, so the first Undo after one of them reverses an older move from before the reset. Press <strong>Reset History</strong> to empty the history, or press <strong>↺ Custom</strong> again to put the pattern back.</p>
+<p><strong>Solve seems to do nothing.</strong> Either the cube is already solved (there is nothing to solve, so no algorithm is produced) or the consistency check failed before the solver was even asked. Press 🔍 <strong>Check</strong>: if it reports a colour with the wrong count, the cube has been painted into a state that is not a real cube. Tap <strong>↺ Classic</strong> to start from a clean cube, or repaint until every colour is on nine stickers.</p>
+<p><strong>Solve takes a long time, or an alert reports that it could not solve the cube.</strong> CFOP is the slower method; give it a few seconds. A real failure shows an alert such as “Could not solve the cube: …”, and if the solver does not answer within 90 seconds the alert says so. Close it and try again, or switch the method in <a href="#122-solve-button-method">Preferences</a>. A cube that is painted into a physically impossible arrangement cannot be solved at all.</p>
+<p><strong>My saved patterns or algorithms are missing.</strong> Try <strong>📂 Restore Patterns from Master File</strong> / <strong>📂 Restore Algorithms from Master File</strong> first. If that list is empty too, restore from an exported backup (<a href="#10-backup-export-and-import">section 10</a>). Data does not survive clearing browser site data or uninstalling the app.</p>
+<p><strong>A shared link does nothing.</strong> Share links are opened by the app. If the app is not installed the link leads to the project's web page instead. Make sure the whole link was copied — the data lives inside it.</p>
+<p><strong>Painting colours the wrong sticker, or the cube spins while I paint.</strong> Paint with a quick tap rather than a drag, and check that painter mode is on (the 🖌️ button highlights and the swatches are visible).</p>
+<p><strong>A pattern does not look like its picture.</strong> Patterns are built from a standard-coloured solved cube. On a cube painted with a different colour scheme the same moves give a different picture. Tap <strong>↺ Classic</strong> and play the pattern again on the standard cube.</p>
+<p><strong>The scramble was much faster than my speed setting.</strong> Scrambles are deliberately capped at 120 ms per turn so a 20-move scramble stays quick. The slider still controls playback, stepping and manual turns.</p>
+<p><strong>The app still looks like the old version after an update.</strong> Close every tab or instance of the app and open it again; the cached copy is replaced when the new one finishes downloading.</p>
+<h3 id="152-frequently-asked-questions">15.2 Frequently asked questions</h3>
+<p><strong>Does the app need internet?</strong> No. Turning, solving, the notation engine, the built-in library, saving and sharing all work offline. Only opening a share link needs a connection.</p>
+<p><strong>Do I need an account?</strong> No. There is no sign-in and no cloud storage.</p>
+<p><strong>Where are my patterns stored?</strong> On this device only — see <a href="#14-where-your-data-lives">section 14</a>.</p>
+<p><strong>Can I undo painting?</strong> No. Painting is not part of the move history. Use <strong>↺ Classic</strong> for a fresh solved cube.</p>
+<p><strong>Can I solve a cube I painted myself?</strong> Yes, as long as each colour is on exactly nine stickers and the arrangement is physically possible. Otherwise the consistency check stops the solve, by design.</p>
+<p><strong>What does the “Requires reset” checkbox do?</strong> It makes the algorithm start from a solved cube, so a pattern always looks the same. Leave it off for algorithms meant to be applied to the cube as it is.</p>
+<p><strong>Can I share more than one item at a time?</strong> Share sends a single selected pattern or algorithm. To move a whole library, use an export file (<a href="#10-backup-export-and-import">section 10</a>).</p>
+<p><strong>Does deleting a pattern or algorithm ask for confirmation?</strong> No — deletion is immediate. Keep a backup if an item matters to you.</p>
+<p class="totop"><a href="#top">&uarr; Top</a></p>
+<h2 id="16-glossary">16. Glossary</h2>
+<div class="tw">
+<table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><strong>Algorithm</strong></td><td>A fixed sequence of turns that produces a known result.</td></tr>
+<tr><td><strong>CAMARI notation</strong></td><td>The app's notation: one two-letter pair per move — a slice letter plus <code>A</code> (clockwise) or <code>I</code> (counter-clockwise), with <code>P</code> added for a wide turn.</td></tr>
+<tr><td><strong>CFOP</strong></td><td>A speedcubing method: Cross, F2L, OLL, PLL. One of the two built-in solvers.</td></tr>
+<tr><td><strong>Classic notation</strong></td><td>Standard cube notation such as <code>R U R' U'</code>, <code>M2</code>, <code>x</code>.</td></tr>
+<tr><td><strong>Consistency check</strong></td><td>The test that every colour appears exactly nine times before solving.</td></tr>
+<tr><td><strong>Cubie</strong></td><td>One of the 26 small pieces the cube is built from.</td></tr>
+<tr><td><strong>Facelet / sticker</strong></td><td>One coloured square. There are 54 in total.</td></tr>
+<tr><td><strong>Kociemba</strong></td><td>The default solver: fast and short, usually around 20 moves.</td></tr>
+<tr><td><strong>Master file</strong></td><td>The app's own recovery copy of your saved patterns and algorithms.</td></tr>
+<tr><td><strong>Move history</strong></td><td>The list Undo and Redo work from.</td></tr>
+<tr><td><strong>Painter mode</strong></td><td>The mode in which tapping a sticker recolours it instead of turning the cube.</td></tr>
+<tr><td><strong>PWA</strong></td><td>Progressive Web App — a website that installs like an app and works offline.</td></tr>
+<tr><td><strong>Scramble</strong></td><td>Twenty random quarter turns used to mix up the cube.</td></tr>
+<tr><td><strong>Slice</strong></td><td>One of the cube's nine turnable layers: six outer faces plus <code>M</code>, <code>E</code>, <code>S</code>.</td></tr>
+<tr><td><strong>Superflip</strong></td><td>The famous pattern with every edge flipped, included in the library.</td></tr>
+<tr><td><strong>Wide turn</strong></td><td>A turn of two layers at once (<code>r</code>, or <code>RAP</code> in CAMARI).</td></tr>
+<tr><td><strong>Whole-cube rotation</strong></td><td>Turning the entire cube without changing the arrangement: <code>x</code>, <code>y</code>, <code>z</code>.</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p><em>CAMARI8 Cube — Version 2.4.0. Built with Three.js and WebGL; the cube engine, both solvers and the notation engine all run on your device.</em></p>
+<footer>
+  <span>CAMARI8 Cube &middot; v2.4.0 &middot; <a href="https://camari8.com/">camari8.com</a></span>
+  <span>Generated from the app&rsquo;s own user guide.</span>
+</footer>
+</main>
+</body>
+</html>
