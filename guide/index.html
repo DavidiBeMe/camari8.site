@@ -162,6 +162,9 @@ th, td { padding: 0.55em 0.75em; text-align: left; vertical-align: top; border-b
 th { background: var(--panel-2); font-weight: 650; }
 tbody tr:last-child td { border-bottom: 0; }
 
+/* Inline app icons (the share button): the app's own SVG, sized to the text */
+.ico { width: 0.95em; height: 0.95em; vertical-align: -0.12em; }
+
 hr { margin: 1.9em 0; border: 0; border-top: 1px solid var(--line); }
 
 .totop { margin: 1.5em 0 0; text-align: right; font-size: 0.82rem; }
@@ -524,7 +527,7 @@ footer a { color: var(--muted); }
 <thead><tr><th>Button</th><th>Action</th></tr></thead>
 <tbody>
 <tr><td>↥</td><td><strong>Load</strong> — rebuilds the cube exactly as saved and closes the window.</td></tr>
-<tr><td>Share icon</td><td><strong>Share</strong> — creates a link for the pattern (see <a href="#11-sharing-patterns-and-algorithms">section 11</a>).</td></tr>
+<tr><td><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2" fill="currentColor"/><circle cx="6" cy="12" r="2" fill="currentColor"/><circle cx="18" cy="19" r="2" fill="currentColor"/><path d="M8 11l8-5M8 13l8 5" stroke="currentColor" stroke-width="2" fill="none"/></svg></td><td><strong>Share</strong> — creates a link for the pattern (see <a href="#11-sharing-patterns-and-algorithms">section 11</a>).</td></tr>
 <tr><td>✏️</td><td><strong>Rename</strong> — puts the current name in the box, selected, ready to type over. Tap 💾 to keep the new name. Renaming does not change the design.</td></tr>
 <tr><td>🗑️</td><td><strong>Delete</strong> — removes the pattern from the list.</td></tr>
 </tbody>
@@ -558,7 +561,7 @@ footer a { color: var(--muted); }
 <thead><tr><th>Button</th><th>Action</th></tr></thead>
 <tbody>
 <tr><td>↥</td><td><strong>Load</strong> — copies the algorithm into the main algorithm field, resets the player to its first move and closes the window.</td></tr>
-<tr><td>Share icon</td><td><strong>Share</strong> — creates a link for this algorithm (see <a href="#11-sharing-patterns-and-algorithms">section 11</a>).</td></tr>
+<tr><td><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2" fill="currentColor"/><circle cx="6" cy="12" r="2" fill="currentColor"/><circle cx="18" cy="19" r="2" fill="currentColor"/><path d="M8 11l8-5M8 13l8 5" stroke="currentColor" stroke-width="2" fill="none"/></svg></td><td><strong>Share</strong> — creates a link for this algorithm (see <a href="#11-sharing-patterns-and-algorithms">section 11</a>).</td></tr>
 <tr><td>✏️</td><td><strong>Edit</strong> — fills the form with this algorithm, including its reset setting. Change anything and tap 💾 to update that same entry instead of creating a new one.</td></tr>
 <tr><td>🗑️</td><td><strong>Delete</strong> — removes the algorithm.</td></tr>
 </tbody>
